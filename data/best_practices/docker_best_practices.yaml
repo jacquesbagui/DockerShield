@@ -1,0 +1,24 @@
+---
+best_practices:
+  - name: "Utiliser une image de base officielle"
+    description: "Préférez les images officielles de Docker Hub pour une meilleure sécurité et maintenance."
+    check: "FROM \\S+:(\\d+(\\.\\d+)*|latest)"
+  
+  - name: "Éviter d'utiliser 'latest' tag"
+    description: "Utilisez des tags de version spécifiques pour une meilleure reproductibilité."
+    check: "FROM \\S+:latest"
+    is_violation: true
+  
+  - name: "Utiliser COPY au lieu de ADD"
+    description: "COPY est plus prévisible et ne fait pas d'extraction automatique."
+    check: "ADD "
+    is_violation: true
+  
+  - name: "Combiner les commandes RUN"
+    description: "Combinez les commandes RUN pour réduire le nombre de couches."
+    check: "(RUN (?!.*&&).+\n){2,}"
+    is_violation: true
+  
+  - name: "Définir un utilisateur non-root"
+    description: "Évitez d'exécuter les conteneurs en tant que root."
+    check: "USER [^r]\\S+"

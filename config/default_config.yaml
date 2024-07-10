@@ -1,0 +1,20 @@
+analyzers:
+  - image_analyzer
+  - dockerfile_analyzer
+  - layer_analyzer
+  - network_analyzer
+  - dynamic_analyzer
+
+scanners:
+  - vulnerability_scanner
+  - secret_scanner
+  - malware_scanner
+  - compliance_scanner
+
+report:
+  format: json
+  output_dir: ./reports
+
+logging:
+  level: INFO
+  file: dockershield.log
